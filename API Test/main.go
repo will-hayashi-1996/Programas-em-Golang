@@ -20,7 +20,7 @@ func main() {
 		fmt.Println("Erro na api!")
 	}
 
-	if(res.StatusCode == 200 && err == nil){
+	if(res.StatusCode == 200){
 
 		var mapAPI map[string]any
 
