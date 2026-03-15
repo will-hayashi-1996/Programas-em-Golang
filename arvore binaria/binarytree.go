@@ -4,82 +4,58 @@ import "fmt"
 
 type Node struct { // Nó para si mesmo na struct
 	value int
-	left * Node
-	right * Node
+	left  *Node
+	right *Node
 }
 
-func insert() *Node{
+func insert(root *Node, value int) *Node {
 
-	var value int
+	if root == nil {
+		return &Node{value: value}
+	}
 
-	var valueLeft int
+	if value < root.value {
 
-	var valueRight int
+		root.left = insert(root.left, value)
 
-	var example Node
-	
-	fmt.Println("Insira o valor")
-	fmt.Scanln(&value)
+	} else {
+		root.right = insert(root.right, value)
+	}
 
-	example.value = value
-
-	fmt.Println("Insira o valor do no esquerdo:")
-	fmt.Scanln(&valueLeft)
-
-	example.left = &Node{value:valueLeft}
-
-	fmt.Println("Insira o valor do no direito:")
-	fmt.Scanln(&valueRight)
-
-	example.right = &Node{value:valueRight}
-
-	
-	return &example
-
+	return root
 
 }
 
-func print(node *Node, n int){
+func inOrder(node *Node) {
 
-	if(node == nil){
+	if node == nil {
 		return
 	}
 
-	fmt.Println("Árvore: ",n,"Valor: ",node.value," \n")
-
-	if(node.left != nil){
-		fmt.Println("Nó esquerdo: \n")
-	}
-		
-	print(node.left,n)
-
-	if(node.right != nil){
-		fmt.Println("Nó direito: \n")
-	}
-		
-	print(node.right,n)
+	inOrder(node.left)
+	fmt.Println(node.value)
+	inOrder(node.right)
 
 }
 
-func main(){
+func main() {
 
 	var numberNodes int
 
-	slice := []*Node{}
+	var root *Node
 
-	fmt.Println("Insira quantos nós terá essa a árvore binária: \n")
+	var value int
+
+	fmt.Println("Insira quantos nós terá essa a árvore binária: ")
 	fmt.Scanln(&numberNodes)
 
-	for i:=0; i < numberNodes; i++ {
+	for i := 0; i < numberNodes; i++ {
 
-		node:= insert()
-
-		slice = append(slice,node)
-
-		print(slice[i],i)
-
+		fmt.Println("Insira o valor: ")
+		fmt.Scanln(&value)
+		root = insert(root, value)
 	}
-	
 
+	inOrder(root)
 
 }
