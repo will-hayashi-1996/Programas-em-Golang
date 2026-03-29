@@ -49,11 +49,14 @@ func main() {
 	fmt.Println("Insira quantos nós terá essa a árvore binária: ")
 	fmt.Scanln(&numberNodes)
 
-	for i := 0; i < numberNodes; i++ {
+	fmt.Println("Insira o valor: ")
+	fmt.Scanln(&value)
+	root = insert(root, value)
 
+	for i := 1; i < numberNodes; i++ {
 		fmt.Println("Insira o valor: ")
 		fmt.Scanln(&value)
-		root = insert(root, value)
+		insert(root, value)
 	}
 
 	inOrder(root)
