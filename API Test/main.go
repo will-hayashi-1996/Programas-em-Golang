@@ -1,10 +1,10 @@
 package main
 
 import (
-		"fmt"
-		"net/http"
-		"encoding/json"
-	)
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
 func main() {
 
@@ -14,24 +14,30 @@ func main() {
 
 	fmt.Scanln(&cep)
 
-	res,err := http.Get("https://viacep.com.br/ws/"+cep+"/json/")
+	res, err := http.Get("https://viacep.com.br/ws/" + cep + "/json/")
 
-	if(err != nil){
+	if err != nil {
 		fmt.Println("Erro na api!")
 	}
 
-	if(res.StatusCode == 200){
+	if res.StatusCode == 200 {
 
 		var mapAPI map[string]any
 
 		json.NewDecoder(res.Body).Decode(&mapAPI)
 
-		if(err != nil){
+		if err != nil {
 			fmt.Println(err)
 			return
 		}
 
-		fmt.Println(mapAPI)
+		for key, value := range mapAPI {
+
+			if value != nil && value != "" && value != " " {
+				fmt.Println(key + ": " + value.(string))
+			}
+
+		}
 	}
 
 }
