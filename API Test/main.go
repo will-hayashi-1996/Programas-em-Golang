@@ -35,6 +35,8 @@ func main() {
 
 			if value != nil && value != "" && value != " " {
 				fmt.Println(key + ": " + value.(string))
+			} else {
+				fmt.Println(key + ": Vazio!")
 			}
 
 		}
