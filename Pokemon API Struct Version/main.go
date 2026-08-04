@@ -11,6 +11,7 @@ type Pokemon struct {
 	ID              int              `json:"id"`
 	Height          float64          `json:"height"`
 	Base_experience float64          `json:"base_experience"`
+	Weight          float64          `json:"weight"`
 	Abilities       []PokemonAbility `json:"abilities"`
 	Cries           []PokemonCry     `json:"cries"`
 	Forms           []PokemonForm    `json:"forms"`
@@ -130,5 +131,13 @@ func main() {
 		fmt.Printf("%s\n", value.PokeType.Name)
 		fmt.Printf("Url: %s\n", value.PokeType.Url)
 	}
+
+	fmt.Printf("Altura:\n")
+
+	fmt.Println(newPokemon.Height)
+
+	fmt.Printf("Peso:\n")
+
+	fmt.Println(newPokemon.Weight)
 
 }
