@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 
 	for key, value := range respApi {
 
-		if key == "results" {
+		if key == "results" && value != nil {
 
 			valueResult := value.([]any)
 
@@ -70,6 +71,18 @@ func main() {
 
 			}
 
+		}
+
+		if key == "message" && value != nil {
+
+			result = append(result, value.(string))
+		}
+
+		if key == "status" && value != nil {
+
+			statusToString := strconv.FormatFloat(value.(float64), 'f', -1, 64)
+
+			result = append(result, "Status: "+statusToString)
 		}
 
 	}
