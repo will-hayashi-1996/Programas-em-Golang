@@ -183,7 +183,23 @@ func main() {
 
 								if strings.Contains(v, textSearch) {
 
-									fmt.Println(valueResultValue)
+									var mapDetail = valueResultValue.(map[string]any)
+
+									for indexDetail, valueDetail := range mapDetail {
+
+										if indexDetail == "detail" && valueDetail == "Not found." {
+
+											fmt.Println("Not Found!")
+											break
+										}
+
+										fmt.Println(indexDetail + ":")
+
+										fmt.Println(valueDetail)
+
+									}
+
+									break
 
 								}
 
@@ -199,11 +215,33 @@ func main() {
 
 		}
 
+		//fmt.Println("Not found!")
+
 	}
 
-	if idSearch > 0 {
+	if idSearch > 0 && len(result) > 0 {
 
-		fmt.Println(result)
+		for _, valueResultMap := range result {
+
+			var mapDetail = valueResultMap.(map[string]any)
+
+			for indexDetail, valueDetail := range mapDetail {
+
+				if indexDetail == "detail" && valueDetail == "Not found." {
+
+					fmt.Println("Not Found!")
+					break
+				}
+
+				fmt.Println(indexDetail + ":")
+
+				fmt.Println(valueDetail)
+
+			}
+
+		}
+
+		//fmt.Println(result)
 
 	}
 
